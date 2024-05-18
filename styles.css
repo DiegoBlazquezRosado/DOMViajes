@@ -33,6 +33,11 @@ section {
     width: 100%;
 }
 
+#destinos select {
+    width: 100%;
+    padding: 5px;
+}
+
 @media screen and (max-width:1200px){
     main {
         margin-left: 10%;
