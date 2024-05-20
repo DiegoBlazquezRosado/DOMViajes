@@ -1,6 +1,9 @@
 //DOM Viajes
 
-//let fragment = document.createDocumentFragment();
+const divBienvenidos = document.getElementById('bienvenidos'); 
+const divRecomendados = document.getElementById('recomendados');
+const divDestinos = document.getElementById('destinos');
+let fragment = document.createDocumentFragment();
 
 //Bienvenidos
 const insertBienvenidos = () => {
@@ -13,17 +16,13 @@ const insertBienvenidos = () => {
         arrTextBienvenidos.push(`Image ${i+1}`);
     }
 
-    const divBienvenidos = document.getElementById('bienvenidos');
     const imgBienvenidos = document.createElement('img');
-    divBienvenidos.appendChild(imgBienvenidos);
-
     imgBienvenidos.src = `./banner/${arrBienvenidos[randomBienvenidos]}`;
     imgBienvenidos.title = arrTextBienvenidos[randomBienvenidos];
     imgBienvenidos.alt =`Descripción de ${arrTextBienvenidos[randomBienvenidos]}`;
+    divBienvenidos.append(imgBienvenidos);
 
 }
-insertBienvenidos();
-
 
 //Recomendados
 const insertRecomendados = () => {
@@ -38,18 +37,15 @@ const insertRecomendados = () => {
         ['viajes-7.jpg', 'Viaje 7', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolore culpa voluptatibus odio autem, expedita quam ipsam unde corporis? Dignissimos ipsa qui voluptatem! Temporibus omnis vitae dolor hic eaque ea.']
     ];
 
-    const divRecomendados = document.getElementById('recomendados');
-
     arrRecomendados.forEach((recomendado) => {
         const articleRecomendados = document.createElement('article');
-        divRecomendados.appendChild(articleRecomendados);
         articleRecomendados.classList.add('card');
 
         const imgRecomendados = document.createElement('img');
-        articleRecomendados.appendChild(imgRecomendados);
         imgRecomendados.src=`./viajes/${recomendado[0]}`;
         imgRecomendados.title=recomendado[1];
         imgRecomendados.alt=`Descripción de ${recomendado[1]}`;
+        articleRecomendados.append(imgRecomendados);
 
         // const h3Recomendados = document.createElement('h3');
         // articleRecomendados.appendChild(h3Recomendados);
@@ -59,31 +55,30 @@ const insertRecomendados = () => {
         // articleRecomendados.appendChild(pRecomendados);
         // pRecomendados.innerText = recomendado[2];
 
-        articleRecomendados.innerHTML = articleRecomendados.innerHTML + `<h3>${recomendado[1]}</h3>`;
-
-        articleRecomendados.innerHTML = articleRecomendados.innerHTML + `<p>${recomendado[2]}</p>`;
+        articleRecomendados.innerHTML += `<h3>${recomendado[1]}</h3>`;
+        articleRecomendados.innerHTML += `<p>${recomendado[2]}</p>`;
+        fragment.append(articleRecomendados);
     });
-
+    divRecomendados.append(fragment);
 }
-insertRecomendados();
-
 
 //Destinos
 const insertDestinos = () => {
 
     const arrDestinos = ['Australia', 'Suiza', 'País Vasco', 'Paises Bajos', 'Dinamarca'];
 
-    const divDestinos = document.getElementById('destinos');
     const selectDestinos = document.createElement('select');
-    divDestinos.appendChild(selectDestinos);
 
     arrDestinos.forEach((destino) => {
         const optionDestinos = document.createElement('option');
-        //fragment.appendChild(optionDestinos);
-        selectDestinos.appendChild(optionDestinos);
         optionDestinos.value = destino;
         optionDestinos.text = destino;
+        selectDestinos.appendChild(optionDestinos);
     });
 
+    divDestinos.append(selectDestinos);
 }
+
+insertBienvenidos();
+insertRecomendados();
 insertDestinos();
